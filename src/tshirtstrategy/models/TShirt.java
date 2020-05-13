@@ -1,16 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tshirtstrategy.models;
 
 import java.util.Objects;
-
-/**
- *
- * @author mac
- */
 
 /*
        .5     .10      .15     .20   .25    .30     .35
@@ -21,7 +11,6 @@ Size, {XS, S,   M, L,  XL, XXL, XXXL}
           
           2.5    4.5      5         7.5   8.2      9.3     22
 Fabric, {WOOL, COTTON, POLYESTER, RAYON, LINEN, CASHMERE, SILK}
-
 */
 
 public class TShirt {
@@ -29,28 +18,20 @@ public class TShirt {
     private Color color;
     private Size size;
     private Fabric fabric;
-    private float price = 10;
+    private final float basePrice = 10;
 
     public TShirt() {
     }
        
-    public TShirt(String name, Color color, Size size, Fabric fabric, float price) {
+    public TShirt(String name, Color color, Size size, Fabric fabric) {
         this.name = name;
         this.color = color;
         this.size = size;
         this.fabric = fabric;
-        this.price = price;
     }
 
-    public float getPrice() {
-        return price;
-    }
-
-    // base price = 10
-    // setPrice(22.75)
-    // price 10+22.75 = 32.75 
-    public void setPrice(float price) {
-        this.price += price;
+    public float getBasePrice() {
+        return basePrice;
     }
 
     public String getName() {
@@ -87,12 +68,12 @@ public class TShirt {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 53 * hash + Objects.hashCode(this.name);
-        hash = 53 * hash + Objects.hashCode(this.color);
-        hash = 53 * hash + Objects.hashCode(this.size);
-        hash = 53 * hash + Objects.hashCode(this.fabric);
-        hash = 53 * hash + Float.floatToIntBits(this.price);
+        int hash = 5;
+        hash = 13 * hash + Objects.hashCode(this.name);
+        hash = 13 * hash + Objects.hashCode(this.color);
+        hash = 13 * hash + Objects.hashCode(this.size);
+        hash = 13 * hash + Objects.hashCode(this.fabric);
+        hash = 13 * hash + Float.floatToIntBits(this.basePrice);
         return hash;
     }
 
@@ -108,7 +89,7 @@ public class TShirt {
             return false;
         }
         final TShirt other = (TShirt) obj;
-        if (Float.floatToIntBits(this.price) != Float.floatToIntBits(other.price)) {
+        if (Float.floatToIntBits(this.basePrice) != Float.floatToIntBits(other.basePrice)) {
             return false;
         }
         if (!Objects.equals(this.name, other.name)) {
@@ -128,6 +109,6 @@ public class TShirt {
 
     @Override
     public String toString() {
-        return "TShirt{" + "name=" + name + ", color=" + color + ", size=" + size + ", fabric=" + fabric + ", price=" + price + '}';
-    }
+        return "TShirt{" + "name=" + name + ", color=" + color + ", size=" + size + ", fabric=" + fabric + ", basePrice=" + basePrice + '}';
+    }   
 }
